@@ -1,0 +1,47 @@
+{
+  "records": 5574,
+  "features_raw": [
+    "text"
+  ],
+  "target": "target",
+  "classes": {
+    "ham": 4827,
+    "spam": 747
+  },
+  "class_percent": {
+    "ham": 86.59849300322928,
+    "spam": 13.40150699677072
+  },
+  "majority_to_minority_ratio": 6.461847389558233,
+  "majority_baseline_accuracy": 0.8659849300322928,
+  "missing_cells": 0,
+  "empty_texts": 0,
+  "duplicate_rows_excess": 403,
+  "unique_rows": 5171,
+  "duplicate_texts_excess": 403,
+  "normalized_duplicate_texts_excess": 415,
+  "exact_text_label_conflicts": 0,
+  "normalized_text_label_conflicts": 0,
+  "text_length_characters": {
+    "ham": {
+      "count": 4827.0,
+      "mean": 71.47192873420344,
+      "std": 58.326643098497904,
+      "min": 2.0,
+      "25%": 33.0,
+      "50%": 52.0,
+      "75%": 93.0,
+      "max": 910.0
+    },
+    "spam": {
+      "count": 747.0,
+      "mean": 138.6760374832664,
+      "std": 28.871249766814547,
+      "min": 13.0,
+      "25%": 133.0,
+      "50%": 149.0,
+      "75%": 157.0,
+      "max": 223.0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Прямые зависимости. Полное проверенное окружение зафиксировано в requirements.txt.
+# После изменения: pip install -r requirements.in; pip-audit; pip freeze > requirements.txt
+pandas
+matplotlib
+scikit-learn
+jupyterlab
+nbconvert
+nbclient
+ipykernel
+pip-audit
+

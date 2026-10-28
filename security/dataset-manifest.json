@@ -1,0 +1,29 @@
+{
+  "algorithm": "SHA256",
+  "established_at_utc": "2026-10-28T12:12:18.022540+00:00",
+  "source": {
+    "name": "SMS Spam Collection",
+    "page_url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+    "archive_url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+    "doi": "10.24432/C5CC84",
+    "authors": "Tiago Almeida; José María Gómez Hidalgo",
+    "year": 2011,
+    "license": "CC BY 4.0 (as stated by UCI)"
+  },
+  "expected_records": 5574,
+  "files": {
+    "data/raw/SMSSpamCollection": {
+      "sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+      "bytes": 477907
+    },
+    "data/raw/sms_spam_collection.zip": {
+      "sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+      "bytes": 203415
+    },
+    "data/raw/readme": {
+      "sha256": "8753cd2d3cab68f80c8257851b8c2037778c267f55accb6fd1b5a2e32d36a84e",
+      "bytes": 5868
+    }
+  },
+  "trust_limit": "Locally established reference from an HTTPS download; not an upstream signature or proof of semantic validity."
+}
