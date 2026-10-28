@@ -1,0 +1,18 @@
+{
+  "model_version": "lab2-v1",
+  "seed": 42,
+  "deduplicate_normalized_text": true,
+  "test_fraction": 0.2,
+  "ci_fraction": 0.2,
+  "main_metric": "f1_spam",
+  "normalization_version": "nfkc-casefold-whitespace-v1",
+  "input_policy": {
+    "max_characters": 4096,
+    "max_utf8_bytes": 16384,
+    "missing_values": "reject",
+    "extra_fields": "reject"
+  },
+  "tfidf": {"ngram_range": [1, 2], "min_df": 2, "max_features": 20000, "sublinear_tf": true},
+  "logistic_regression": {"C": 1.0, "class_weight": "balanced", "solver": "liblinear", "max_iter": 1000},
+  "robustness": {"samples_per_class": 10, "max_typo_tokens": 3}
+}

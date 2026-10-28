@@ -6,6 +6,7 @@ asttokens==3.0.2
 async-lru==2.4.0
 attrs==26.1.0
 babel==2.18.0
+bandit==1.9.4
 beautifulsoup4==4.15.0
 bleach==6.4.0
 boolean.py==5.0
@@ -29,6 +30,7 @@ h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
 idna==3.20
+iniconfig==2.3.1
 ipykernel==7.4.0
 ipython==9.17.1
 ipython_pygments_lexers==1.1.1
@@ -78,6 +80,8 @@ pip-requirements-parser==32.0.1
 pip_api==0.0.35
 pip_audit==2.10.1
 platformdirs==4.13.7
+pluggy==1.7.0
+prettytable==3.18.0
 prometheus_client==0.26.0
 prompt_toolkit==3.0.53
 psutil==7.2.2
@@ -87,6 +91,7 @@ py-serializable==2.1.0
 pycparser==3.12
 Pygments==2.21.0
 pyparsing==3.3.3
+pytest==9.2.0
 python-dateutil==3.0.0
 python-json-logger==4.2.0
 PyYAML==6.0.3
@@ -102,9 +107,11 @@ scikit-learn==1.9.1
 scipy==1.18.1
 Send2Trash==2.1.0
 six==1.17.0
+skops==0.16.0
 sortedcontainers==2.4.0
 soupsieve==3.0.4
 stack-data==0.6.3
+stevedore==5.9.1
 terminado==0.18.1
 threadpoolctl==3.7.0
 tinycss2==1.5.1

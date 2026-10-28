@@ -8,4 +8,7 @@ nbconvert
 nbclient
 ipykernel
 pip-audit
+skops
+pytest
+bandit
 
