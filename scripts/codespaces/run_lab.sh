@@ -4,6 +4,8 @@ set -Eeuo pipefail
 umask 077
 project_root=$(pwd -P)
 vm_state=${1:?Private VM state directory is required}
+resolve_deps=${ML_LAB_RESOLVE_DEPENDENCIES:-1}
+[[ ${resolve_deps} == 0 || ${resolve_deps} == 1 ]] || { echo 'ML_LAB_RESOLVE_DEPENDENCIES must be 0 or 1.' >&2; exit 1; }
 [[ ${CODESPACES:-} == true ]] || { echo 'This launcher is intended for GitHub Codespaces.' >&2; exit 1; }
 [[ ${EUID} -ne 0 ]] || { echo 'Run bash lab1-codespaces.sh without sudo.' >&2; exit 1; }
 mkdir -p "${vm_state}" evidence/client
@@ -270,7 +272,7 @@ fi
 ssh -F "${vm_state}/ssh_config" -O check ml-lab >> evidence/client/ssh-existing-session.txt 2>&1
 
 step '6/9: Python environment, dataset, Notebook, dependency audit'
-vm_user 'cd /home/mluser/ml-project && ML_LAB_RESOLVE_DEPENDENCIES=1 bash scripts/setup_project.sh'
+vm_user "cd /home/mluser/ml-project && ML_LAB_RESOLVE_DEPENDENCIES=${resolve_deps} bash scripts/setup_project.sh"
 vm_user 'bash /home/mluser/ml-project/scripts/codespaces/start_jupyter_vm.sh'
 vm_user 'bash -s' <<'SH'
 set -e

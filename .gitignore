@@ -26,6 +26,7 @@ evidence/client/
 evidence/result-downloads/
 .labvm/
 lab1-codespaces.sh
+lab1-finalize.sh
 lab1-results.zip
 ml-project-lab1.zip
 evidence/vm-results.tar.gz

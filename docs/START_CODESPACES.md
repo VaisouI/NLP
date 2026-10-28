@@ -3,11 +3,14 @@
 Точка запуска — терминал Codespaces, каталог `/workspaces/codespaces-blank` либо корень
 своего репозитория. На Windows не устанавливаются пакеты или гипервизор.
 
-Загрузите `lab1-codespaces.sh` в корень Codespace и выполните:
+В Codespace, открытом из этого репозитория, выполните:
 
 ```bash
-bash lab1-codespaces.sh
+bash scripts/codespaces/bootstrap.sh
 ```
+
+Для первоначального пустого Codespace также использовался самодостаточный
+`lab1-codespaces.sh`. Для воспроизведения из репозитория отдельный файл не требуется.
 
 Сценарий проверяет KVM, создаёт отдельную Ubuntu 24.04 VM с 2 vCPU, 4 ГБ RAM и
 виртуальным диском 30 ГБ, передаёт проект и выполняет лабораторные проверки.
@@ -69,7 +72,7 @@ Codespace через его меню `…` → `Delete`, затем создай
 (`Explore quick start templates` → `See all` → `Blank` → `Use this template`).
 Удаление уничтожает файлы и VM внутри выбранного Codespace; опубликованный
 GitHub-репозиторий при этом не удаляется. В новый Codespace загрузите актуальный
-`lab1-codespaces.sh` и выполните ту же команду запуска.
+проект из репозитория и выполните `bash scripts/codespaces/bootstrap.sh`.
 
 Git-репозиторий подготовлен локально. Если исходный Blank Codespace ещё не связан с
 вашим репозиторием, используйте Publish to GitHub в панели Source Control и выберите
