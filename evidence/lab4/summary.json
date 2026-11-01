@@ -1,0 +1,22 @@
+{
+  "run_id": 41344003120,
+  "run_url": "https://github.com/VaisouI/NLP/actions/runs/41344003120",
+  "job_id": 124959815683,
+  "source_commit": "76ee09ba7a100e945ec9f2f9681469ed5b8228b3",
+  "conclusion": "success",
+  "artifact_id": 13098399024,
+  "artifact_sha256": "39a60c654d2760c9cb82c67ae69abbe860157f81f6e65c5a88e0f853e65b2a10",
+  "model_sha256": "bc04b5206712a422ba794104bbbec65231f46087c6a7e797fa1103ec139b0591",
+  "model_version": "lab2-v1",
+  "tests_passed": 135,
+  "pip_audit_dependencies": 144,
+  "pip_audit_vulnerabilities": 0,
+  "trivy_findings": 183,
+  "critical_findings": 0,
+  "resolved_unknown": 8,
+  "uid": 10001,
+  "api_http_verified": true,
+  "browser_verified": true,
+  "container_verified": true,
+  "vm_launcher_executed_in_user_codespace": false
+}

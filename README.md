@@ -32,6 +32,11 @@ bash scripts/codespaces/run_lab4.sh
 внутри Ubuntu. Подробные команды, схема ответов, тесты, логи, метрики и сценарий:
 [docs/LAB4.md](docs/LAB4.md). Все проверки ЛР3 сохранены в общем CI; добавлены
 реальные HTTP-тесты, снимки страницы и проверка API-контейнера от UID 10001.
+Подтверждены **135 тестов**, реальный Chromium и работающий контейнер:
+[отчёт ЛР4](docs/LAB4_REPORT.md), [архив проверок](evidence/lab4/lab4-results.zip).
+Для запуска одним Python-файлом доступен
+[lab4-codespaces.py](scripts/codespaces/lab4-codespaces.py): поместите его в корень
+существующего Codespace и выполните `python3 lab4-codespaces.py`.
 
 ## ЛР3: безопасный CI/CD
 

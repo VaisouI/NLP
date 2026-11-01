@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "browser_version": "156.0.8078.4",
+  "prediction_http_status": 200,
+  "unauthorized_http_status": 401,
+  "token_field_cleared_before_capture": true
+}
