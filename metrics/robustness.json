@@ -1,0 +1,141 @@
+{
+  "samples": 20,
+  "classes": {
+    "ham": 10,
+    "spam": 10
+  },
+  "seed": 42,
+  "original_metrics": {
+    "samples": 20,
+    "accuracy": 0.95,
+    "balanced_accuracy": 0.95,
+    "f1_spam": 0.9473684210526315,
+    "macro_f1": 0.949874686716792,
+    "per_class": {
+      "ham": {
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1-score": 0.9523809523809523,
+        "support": 10.0
+      },
+      "spam": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1-score": 0.9473684210526315,
+        "support": 10.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        10,
+        0
+      ],
+      [
+        1,
+        9
+      ]
+    ],
+    "label_order": [
+      "ham",
+      "spam"
+    ]
+  },
+  "selection": "10 examples per class from final test; no model or threshold changes after observation",
+  "variants": {
+    "case_and_whitespace": {
+      "changed_predictions": 0,
+      "prediction_change_rate": 0.0,
+      "changed_input_texts": 20,
+      "metrics": {
+        "samples": 20,
+        "accuracy": 0.95,
+        "balanced_accuracy": 0.95,
+        "f1_spam": 0.9473684210526315,
+        "macro_f1": 0.949874686716792,
+        "per_class": {
+          "ham": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1-score": 0.9523809523809523,
+            "support": 10.0
+          },
+          "spam": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 10.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        "label_order": [
+          "ham",
+          "spam"
+        ]
+      },
+      "mean_absolute_decision_score_shift": 0.0,
+      "max_absolute_decision_score_shift": 0.0,
+      "score_definition": "LogisticRegression.decision_function margin for spam; not a calibrated probability"
+    },
+    "typos": {
+      "changed_predictions": 0,
+      "prediction_change_rate": 0.0,
+      "changed_input_texts": 20,
+      "metrics": {
+        "samples": 20,
+        "accuracy": 0.95,
+        "balanced_accuracy": 0.95,
+        "f1_spam": 0.9473684210526315,
+        "macro_f1": 0.949874686716792,
+        "per_class": {
+          "ham": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1-score": 0.9523809523809523,
+            "support": 10.0
+          },
+          "spam": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 10.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        "label_order": [
+          "ham",
+          "spam"
+        ]
+      },
+      "mean_absolute_decision_score_shift": 0.22382854047472298,
+      "max_absolute_decision_score_shift": 0.9118228952543936,
+      "score_definition": "LogisticRegression.decision_function margin for spam; not a calibrated probability"
+    }
+  },
+  "limitations": "Small balanced diagnostic subset; swaps are assumed label preserving; not proof of robustness to all attacks",
+  "atypical_input": {
+    "description": "Synthetic emoji-only text; syntactically valid but unlike ordinary English SMS",
+    "characters": 60,
+    "prediction": "ham",
+    "nonzero_tfidf_features": 0,
+    "interpretation": "Schema validation does not detect distribution shift; no formal OOD detector is implemented",
+    "proposed_measure": "Evaluate vocabulary coverage and abstention on a separate validation set before deploying"
+  }
+}

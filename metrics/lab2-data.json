@@ -1,0 +1,88 @@
+{
+  "source_sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "dataset_version": "uci-sms-7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "split_version": "deduplicated-v1-seed42-60-20-20",
+  "split_sha256": "501059ed268a2ddd6019bd422ced9d6031374891c633944e791e0042f464834b",
+  "raw_profile": {
+    "records": 5574,
+    "features_raw": [
+      "text"
+    ],
+    "target": "target",
+    "classes": {
+      "ham": 4827,
+      "spam": 747
+    },
+    "class_percent": {
+      "ham": 86.59849300322928,
+      "spam": 13.40150699677072
+    },
+    "majority_to_minority_ratio": 6.461847389558233,
+    "majority_baseline_accuracy": 0.8659849300322928,
+    "missing_cells": 0,
+    "empty_texts": 0,
+    "duplicate_rows_excess": 403,
+    "unique_rows": 5171,
+    "duplicate_texts_excess": 403,
+    "normalized_duplicate_texts_excess": 415,
+    "exact_text_label_conflicts": 0,
+    "normalized_text_label_conflicts": 0,
+    "text_length_characters": {
+      "ham": {
+        "count": 4827.0,
+        "mean": 71.47192873420344,
+        "std": 58.326643098497904,
+        "min": 2.0,
+        "25%": 33.0,
+        "50%": 52.0,
+        "75%": 93.0,
+        "max": 910.0
+      },
+      "spam": {
+        "count": 747.0,
+        "mean": 138.6760374832664,
+        "std": 28.871249766814547,
+        "min": 13.0,
+        "25%": 133.0,
+        "50%": 149.0,
+        "75%": 157.0,
+        "max": 223.0
+      }
+    }
+  },
+  "retained_records": 5124,
+  "retained_classes": {
+    "ham": 4484,
+    "spam": 640
+  },
+  "invalid_input_exclusions": {
+    "control_character": 35
+  },
+  "removed_invalid_inputs": 35,
+  "removed_normalized_duplicates": 415,
+  "policy": "Inputs rejected by the documented inference policy and repeated normalized texts excluded; no class balancing, imputation or label edits",
+  "group_overlap_count": 0,
+  "splits": {
+    "train": {
+      "records": 3074,
+      "classes": {
+        "ham": 2690,
+        "spam": 384
+      }
+    },
+    "ci": {
+      "records": 1025,
+      "classes": {
+        "ham": 897,
+        "spam": 128
+      }
+    },
+    "test": {
+      "records": 1025,
+      "classes": {
+        "ham": 897,
+        "spam": 128
+      }
+    }
+  }
+}

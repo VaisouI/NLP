@@ -1,0 +1,78 @@
+{
+  "total_errors": 14,
+  "examples": [
+    {
+      "source_row": 84,
+      "expected": "ham",
+      "predicted": "spam",
+      "characters": 14,
+      "known_nonzero_features": 3,
+      "decision_score_spam": 0.2276926948669047,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 153,
+      "expected": "ham",
+      "predicted": "spam",
+      "characters": 25,
+      "known_nonzero_features": 3,
+      "decision_score_spam": 0.4864134261995714,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 180,
+      "expected": "ham",
+      "predicted": "spam",
+      "characters": 126,
+      "known_nonzero_features": 26,
+      "decision_score_spam": 0.1661978439101881,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 1056,
+      "expected": "ham",
+      "predicted": "spam",
+      "characters": 24,
+      "known_nonzero_features": 6,
+      "decision_score_spam": 0.02216535544845888,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 1458,
+      "expected": "spam",
+      "predicted": "ham",
+      "characters": 153,
+      "known_nonzero_features": 15,
+      "decision_score_spam": -0.28416591761791365,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 1500,
+      "expected": "spam",
+      "predicted": "ham",
+      "characters": 154,
+      "known_nonzero_features": 22,
+      "decision_score_spam": -0.0036228836974723233,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 1674,
+      "expected": "spam",
+      "predicted": "ham",
+      "characters": 73,
+      "known_nonzero_features": 12,
+      "decision_score_spam": -0.36706667848917895,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    },
+    {
+      "source_row": 2248,
+      "expected": "spam",
+      "predicted": "ham",
+      "characters": 159,
+      "known_nonzero_features": 20,
+      "decision_score_spam": -0.1099383135161538,
+      "interpretation": "Лексических признаков недостаточно для правильного решения; анализ по длине и числу признаков не устанавливает причину ошибки"
+    }
+  ],
+  "raw_text_published": false
+}

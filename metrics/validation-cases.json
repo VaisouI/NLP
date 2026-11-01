@@ -1,0 +1,103 @@
+[
+  {
+    "case": "valid synthetic SMS",
+    "expected": "valid prediction",
+    "actual": {
+      "prediction": "ham",
+      "model_version": "lab2-v1"
+    },
+    "model_calls": 1,
+    "passed": true
+  },
+  {
+    "case": "not an object",
+    "expected": "invalid_structure",
+    "actual": "invalid_structure",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "missing text",
+    "expected": "invalid_fields",
+    "actual": "invalid_fields",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "extra field",
+    "expected": "invalid_fields",
+    "actual": "invalid_fields",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "wrong text type",
+    "expected": "invalid_type",
+    "actual": "invalid_type",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "null",
+    "expected": "invalid_type",
+    "actual": "invalid_type",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "NaN",
+    "expected": "invalid_type",
+    "actual": "invalid_type",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "Inf",
+    "expected": "invalid_type",
+    "actual": "invalid_type",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "empty",
+    "expected": "empty_text",
+    "actual": "empty_text",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "character limit 65 > 64",
+    "expected": "text_too_long",
+    "actual": "text_too_long",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "UTF-8 byte limit 98 > 96",
+    "expected": "text_too_large",
+    "actual": "text_too_large",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "normalization expansion",
+    "expected": "normalized_too_large",
+    "actual": "normalized_too_large",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "control character",
+    "expected": "control_character",
+    "actual": "control_character",
+    "model_calls": 0,
+    "passed": true
+  },
+  {
+    "case": "invalid Unicode surrogate",
+    "expected": "invalid_unicode",
+    "actual": "invalid_unicode",
+    "model_calls": 0,
+    "passed": true
+  }
+]

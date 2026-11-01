@@ -1,0 +1,49 @@
+{
+  "model_version": "lab2-v1",
+  "model_sha256": "01c009c7f3d92ee711a25c987ab39649a14bd3c3565685e66ac7aefdcd0b4940",
+  "main_metric": "f1_spam",
+  "dataset_version": "uci-sms-7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "dataset_sha256": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "split_version": "deduplicated-v1-seed42-60-20-20",
+  "split_sha256": "501059ed268a2ddd6019bd422ced9d6031374891c633944e791e0042f464834b",
+  "seed": 42,
+  "metric_definition": "binary F1; positive label spam; zero_division=0",
+  "role": "fixed_ci_control",
+  "value": 0.9411764705882353,
+  "samples": 1025,
+  "metrics": {
+    "samples": 1025,
+    "accuracy": 0.9853658536585366,
+    "balanced_accuracy": 0.9648481047937569,
+    "f1_spam": 0.9411764705882353,
+    "macro_f1": 0.9664099623136162,
+    "per_class": {
+      "ham": {
+        "precision": 0.9910913140311804,
+        "recall": 0.992196209587514,
+        "f1-score": 0.9916434540389972,
+        "support": 897.0
+      },
+      "spam": {
+        "precision": 0.9448818897637795,
+        "recall": 0.9375,
+        "f1-score": 0.9411764705882353,
+        "support": 128.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        890,
+        7
+      ],
+      [
+        8,
+        120
+      ]
+    ],
+    "label_order": [
+      "ham",
+      "spam"
+    ]
+  }
+}
