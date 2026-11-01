@@ -76,6 +76,7 @@ pandocfilters==1.5.1
 parso==0.8.7
 pexpect==4.9.0
 pillow==13.0.0
+pip==26.2.2
 pip-requirements-parser==32.0.1
 pip_api==0.0.35
 pip_audit==2.10.1
@@ -103,6 +104,7 @@ rfc3986-validator==0.1.1
 rfc3987-syntax==1.1.0
 rich==15.0.0
 rpds-py==2026.9.1
+ruff==0.17.3
 scikit-learn==1.9.1
 scipy==1.18.1
 Send2Trash==2.1.0

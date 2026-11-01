@@ -1,0 +1,79 @@
+name: LR3 secure ML CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lab3-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Tests, quality gates, container and security
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Checkout reviewed source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up fixed Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: "3.12.16"
+      - name: Install fixed dependencies
+        run: |
+          mkdir -p reports/lab3
+          python -m pip install --only-binary=:all: -r requirements.txt
+          python -m pip check | tee reports/lab3/pip-check.txt
+          python -m pip freeze > reports/lab3/installed-requirements.txt
+          python --version | tee reports/lab3/python-version.txt
+      - name: Prepare verified data and provenance
+        run: python scripts/ci/lab3.py prepare
+      - name: Ruff
+        run: ruff check src/ tests/ --output-format=json > reports/lab3/ruff.json
+      - name: Bandit
+        run: python -m bandit -r src/ -f json -o reports/lab3/bandit.json
+      - name: Unit and integration tests
+        run: python -m pytest tests/ -q --junitxml=reports/lab3/pytest.xml | tee reports/lab3/pytest.txt
+      - name: Dependency audit - every finding blocks
+        run: python scripts/ci/lab3.py audit
+      - name: Data quality gate
+        run: python scripts/ci/lab3.py data
+      - name: Train reproducible candidate on train only
+        run: python scripts/ci/lab3.py train
+      - name: Evaluate fixed CI sample and model quality gate
+        run: python scripts/ci/lab3.py model
+      - name: Build non-root inference image
+        run: |
+          docker build --pull -t ml-project:lab3 .
+          docker image inspect ml-project:lab3 --format '{{json .}}' > reports/lab3/docker-inspect.json
+      - name: Install verified official Trivy
+        run: bash scripts/ci/install_trivy.sh
+      - name: Dockerfile scan, real image scan and security gate
+        run: python scripts/ci/lab3.py scan
+      - name: Verify non-root UID and container smoke
+        run: python scripts/ci/lab3.py smoke
+      - name: Preserve diagnostic reports on success or failure
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: lab3-reports-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/lab3/
+          if-no-files-found: error
+          retention-days: 30

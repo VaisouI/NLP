@@ -1,0 +1,16 @@
+**
+!requirements-runtime.txt
+!src/
+!src/__init__.py
+!src/artifacts.py
+!src/preprocessing.py
+!src/prediction.py
+!src/smoke.py
+!config/
+!config/lab2.json
+!artifacts/
+!artifacts/ci/
+!artifacts/ci/model.skops
+!artifacts/ci/model-manifest.json
+!Dockerfile
+!.dockerignore

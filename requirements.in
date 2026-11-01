@@ -12,3 +12,4 @@ skops
 pytest
 bandit
 
+ruff==0.17.3

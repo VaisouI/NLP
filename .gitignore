@@ -49,3 +49,7 @@ core
 core.*
 *.core
 
+
+# Ephemeral private CI data, model and local diagnostic output.
+artifacts/
+reports/

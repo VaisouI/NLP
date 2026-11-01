@@ -1,0 +1,39 @@
+{
+  "dataset_version": "uci-sms-7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "split_version": "deduplicated-v1-seed42-60-20-20",
+  "split_sha256": "501059ed268a2ddd6019bd422ced9d6031374891c633944e791e0042f464834b",
+  "fixture_version": "lab3-ci-jsonl-v1",
+  "sha256": "491bfa211530d93e191309882e5ccee0611589b434deb95dc7fce1e2d4952cfd",
+  "samples": 1025,
+  "fields": [
+    "source_row",
+    "text",
+    "target"
+  ],
+  "types": {
+    "source_row": "non-negative integer",
+    "text": "nonempty string; LR2 input policy",
+    "target": "ham | spam"
+  },
+  "min_samples": 1025,
+  "max_samples": 1025,
+  "max_file_bytes": 1048576,
+  "class_fraction": {
+    "ham": [
+      0.84,
+      0.9
+    ],
+    "spam": [
+      0.1,
+      0.16
+    ]
+  },
+  "missing_policy": "reject",
+  "nonfinite_policy": "reject",
+  "normalization": "nfkc-casefold-whitespace-v1",
+  "source": "UCI SMS Spam Collection; verified source archive and LR2 split; only CI partition",
+  "input_limits": {
+    "max_characters": 4096,
+    "max_utf8_bytes": 16384
+  }
+}

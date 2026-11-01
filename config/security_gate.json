@@ -1,0 +1,7 @@
+{
+  "policy_version": "lab3-security-v1",
+  "dependency_policy": "block every pip-audit finding; fail on operational errors or skipped dependencies",
+  "blocked_severities": ["CRITICAL", "UNKNOWN"],
+  "configuration_policy": "block every Trivy Dockerfile misconfiguration",
+  "simulation_report": "tests/fixtures/simulated-critical-trivy.json"
+}

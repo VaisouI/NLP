@@ -1,0 +1,14 @@
+{
+  "dataset_version": "uci-sms-7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+  "split_version": "deduplicated-v1-seed42-60-20-20",
+  "split_sha256": "501059ed268a2ddd6019bd422ced9d6031374891c633944e791e0042f464834b",
+  "main_metric": "f1_spam",
+  "metric_definition": "binary F1; positive label spam; zero_division=0",
+  "role": "fixed_ci_control",
+  "samples": 1025,
+  "baseline_file": "metrics/baseline_ci.json",
+  "baseline_file_sha256": "96d058c13350b942dc0a6521f33d116e9c2de3fe19ab738ebfe2db7854aa1b1d",
+  "max_relative_degradation": 0.05,
+  "direction": "higher_is_better",
+  "policy_version": "lab3-f1-v1"
+}
