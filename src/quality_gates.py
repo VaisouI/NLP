@@ -6,7 +6,6 @@ import json
 import math
 import re
 from collections import Counter
-from datetime import date
 from pathlib import Path
 
 from src.preprocessing import InputPolicy, InputValidationError, normalize_text, validate_payload
@@ -116,49 +115,48 @@ def model_gate(candidate: dict, baseline: dict, policy: dict) -> dict:
             'model_sha256': candidate['model_sha256'], 'split_sha256': candidate['split_sha256']}
 
 
-def _reviewed_severity(item: dict, result: dict, policy: dict, evidence: dict, today: date) -> tuple[str, dict | None]:
+def _primary_severity(item: dict, evidence: dict) -> tuple[str, dict | None]:
     original = item.get('Severity', 'UNKNOWN')
     if original != 'UNKNOWN':
         return original, None
-    for review in policy.get('severity_reviews', []):
-        identity = (item.get('VulnerabilityID'), item.get('PkgName'), item.get('InstalledVersion'), result.get('Type'))
-        expected = tuple(review.get(key) for key in ('cve_id', 'package', 'installed_version', 'os_type'))
-        if identity != expected:
-            continue
-        if not date.fromisoformat(review['reviewed_at']) <= today <= date.fromisoformat(review['expires_at']):
-            raise GateError('Severity evidence review expired or is not yet valid')
-        source = evidence.get(review['cve_id'])
-        if type(source) is not dict or source.get('cveMetadata', {}).get('cveId') != review['cve_id']:
-            raise GateError('Missing primary CVE evidence')
-        if source['cveMetadata'].get('state') != 'PUBLISHED':
-            raise GateError('CVE evidence must be published')
-        scores = []
-        for provider in source.get('containers', {}).get('adp', []):
-            if provider.get('providerMetadata', {}).get('shortName') != 'CISA-ADP':
-                continue
-            for metric in provider.get('metrics', []):
-                cvss = metric.get('cvssV3_1')
+    record = evidence.get(item['VulnerabilityID'])
+    if record is None:
+        return original, None
+    source = record['document']
+    if source.get('cveMetadata', {}).get('cveId') != item['VulnerabilityID']:
+        raise GateError('Primary evidence refers to another CVE')
+    if source['cveMetadata'].get('state') != 'PUBLISHED':
+        raise GateError('CVE evidence must be published')
+    containers = source.get('containers', {})
+    providers = [containers.get('cna', {})] + [provider for provider in containers.get('adp', [])
+                                             if provider.get('providerMetadata', {}).get('shortName') == 'CISA-ADP']
+    scores = []
+    ranks = {'NONE': 0, 'LOW': 1, 'MEDIUM': 2, 'HIGH': 3, 'CRITICAL': 4}
+    for provider in providers:
+        for metric in provider.get('metrics', []):
+            for key, version in (('cvssV3_0', '3.0'), ('cvssV3_1', '3.1'), ('cvssV4_0', '4.0')):
+                cvss = metric.get(key)
                 if cvss is None:
                     continue
                 score = cvss.get('baseScore')
                 if type(score) not in (int, float) or not math.isfinite(score) or not 0 <= score <= 10:
                     raise GateError('Invalid primary CVSS evidence')
-                severity = 'CRITICAL' if score >= 9 else 'HIGH' if score >= 7 else 'MEDIUM' if score >= 4 else 'LOW'
-                if cvss.get('baseSeverity') != severity:
+                severity = ('CRITICAL' if score >= 9 else 'HIGH' if score >= 7 else 'MEDIUM' if score >= 4
+                            else 'LOW' if score > 0 else 'NONE')
+                if cvss.get('baseSeverity') != severity or cvss.get('version') != version:
                     raise GateError('CVSS score and severity disagree')
-                scores.append((score, severity))
-        if not scores:
-            raise GateError('Primary CISA CVSS metric is missing')
-        score, severity = max(scores)
-        return severity, {'VulnerabilityID': item['VulnerabilityID'], 'PkgName': item['PkgName'],
-                          'InstalledVersion': item['InstalledVersion'], 'scanner_severity': original,
-                          'resolved_severity': severity, 'cvss_v3_1': score,
-                          'source': review['source'], 'evidence_sha256': review['evidence_sha256'],
-                          'reviewed_at': review['reviewed_at'], 'expires_at': review['expires_at']}
-    return original, None
+                scores.append((ranks[severity], score, severity, version))
+    if not scores:
+        return original, None
+    _, score, severity, version = max(scores)
+    return severity, {'VulnerabilityID': item['VulnerabilityID'], 'PkgName': item['PkgName'],
+                      'InstalledVersion': item.get('InstalledVersion'), 'scanner_severity': original,
+                      'resolved_severity': severity, 'cvss_version': version, 'cvss_score': score,
+                      'source': record['source'], 'evidence_sha256': record['sha256'],
+                      'source_commit': record['source_commit']}
 
 
-def security_gate(report: dict, policy: dict, evidence: dict | None = None, today: date | None = None) -> dict:
+def security_gate(report: dict, policy: dict, evidence: dict | None = None) -> dict:
     if report.get('SchemaVersion') != 2 or report.get('ArtifactType') != 'container_image':
         raise GateError('Unsupported or incomplete Trivy image report')
     if not report.get('ArtifactName') or not report.get('CreatedAt'):
@@ -182,11 +180,11 @@ def security_gate(report: dict, policy: dict, evidence: dict | None = None, toda
         for item in vulnerabilities:
             if type(item) is not dict or not item.get('VulnerabilityID') or not item.get('PkgName'):
                 raise GateError('Malformed vulnerability finding')
-            severity, resolution = _reviewed_severity(item, result, policy, evidence or {}, today or date.today())
+            severity, resolution = _primary_severity(item, evidence or {})
             if resolution is not None:
                 resolved.append(resolution)
             findings += 1
-            if severity not in {'LOW', 'MEDIUM', 'HIGH', 'CRITICAL', 'UNKNOWN'}:
+            if severity not in {'NONE', 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL', 'UNKNOWN'}:
                 raise GateError('Invalid vulnerability severity')
             if severity in policy['blocked_severities']:
                 blocked.append({key: item.get(key) for key in

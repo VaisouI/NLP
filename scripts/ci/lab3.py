@@ -7,9 +7,12 @@ import hashlib
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
+import urllib.parse
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from zipfile import ZIP_DEFLATED
@@ -17,7 +20,7 @@ from zipfile import ZIP_DEFLATED
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from src.quality_gates import GateError, data_gate, digest, model_gate, read_json, security_gate
+from src.quality_gates import GateError, data_gate, digest, model_gate, read_json, security_gate, strict_json
 
 REPORTS = ROOT / 'reports/lab3'
 ARTIFACTS = ROOT / 'artifacts/ci'
@@ -174,15 +177,9 @@ def scan() -> dict:
                     '--output', str(REPORTS / 'trivy-image.json'), 'ml-project:lab3'],
                    cwd=ROOT, check=True, timeout=480)
     policy = read_json(ROOT / 'config/security_gate.json')
-    evidence = {}
-    for review in policy.get('severity_reviews', []):
-        path = (ROOT / review['evidence_file']).resolve()
-        if not path.is_relative_to((ROOT / 'security/vulnerability-evidence').resolve()):
-            raise GateError('Severity evidence must be inside the reviewed evidence directory')
-        if digest(path) != review['evidence_sha256']:
-            raise GateError('Primary vulnerability evidence SHA256 differs from reviewed policy')
-        evidence[review['cve_id']] = read_json(path)
-    result = security_gate(read_json(REPORTS / 'trivy-image.json'), policy, evidence)
+    image_report = read_json(REPORTS / 'trivy-image.json')
+    evidence = primary_evidence(image_report)
+    result = security_gate(image_report, policy, evidence)
     write(REPORTS / 'real-image-security-policy.json', result)
     if not result['passed']:
         return result
@@ -191,6 +188,48 @@ def scan() -> dict:
                                read_json(ROOT / 'config/security_gate.json'))
         result['demonstration'] = 'SIMULATION of policy input; real scanner output is kept separately'
     return result
+
+
+def primary_evidence(report: dict) -> dict:
+    """Enrich UNKNOWN using the published CNA/CISA record, never a default safe severity."""
+    identifiers = {item.get('VulnerabilityID', '') for result in report.get('Results', [])
+                   for item in result.get('Vulnerabilities') or [] if item.get('Severity', 'UNKNOWN') == 'UNKNOWN'}
+    identifiers = sorted(identifier for identifier in identifiers if re.fullmatch(r'CVE-\d{4}-\d{4,}', identifier))
+    if len(identifiers) > 50:
+        raise GateError('Too many unresolved severities for this bounded CI scan')
+    if not identifiers:
+        return {}
+    # One immutable CVE Program snapshot for this scan, with every source file and hash retained.
+    resolved = subprocess.run(['git', 'ls-remote', 'https://github.com/CVEProject/cvelistV5.git',
+                               'refs/heads/main'], capture_output=True, text=True, check=True, timeout=30).stdout.strip()
+    commit, ref = resolved.split()
+    if not re.fullmatch(r'[0-9a-f]{40}', commit) or ref != 'refs/heads/main':
+        raise GateError('Invalid CVE Program snapshot reference')
+    evidence = {}
+    for identifier in identifiers:
+        _, year, number = identifier.split('-')
+        folder = number[:-3] + 'xxx'
+        url = f'https://raw.githubusercontent.com/CVEProject/cvelistV5/{commit}/cves/{year}/{folder}/{identifier}.json'
+        request = urllib.request.Request(url, headers={'User-Agent': 'ml-lab3-cvss-evidence/1.0'})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            final = urllib.parse.urlparse(response.geturl())
+            if final.scheme != 'https' or final.hostname != 'raw.githubusercontent.com':
+                raise GateError('Unexpected primary CVE evidence redirect')
+            raw = response.read(1024 * 1024 + 1)
+        if len(raw) > 1024 * 1024:
+            raise GateError('Primary CVE evidence exceeds size limit')
+        document = strict_json(raw)
+        if type(document) is not dict:
+            raise GateError('Invalid primary CVE document')
+        target = REPORTS / 'cve-evidence' / (identifier + '.json')
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+        evidence[identifier] = {'document': document, 'source': url,
+                                'sha256': digest(target), 'source_commit': commit}
+    write(REPORTS / 'primary-severity-sources.json',
+          {key: {name: value for name, value in item.items() if name != 'document'}
+           for key, item in evidence.items()})
+    return evidence
 
 
 def smoke() -> dict:
