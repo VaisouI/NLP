@@ -1,6 +1,7 @@
 import copy
 import hashlib
 import json
+from datetime import date
 
 import pytest
 
@@ -157,3 +158,54 @@ def test_incomplete_scan_is_not_a_clean_scan(scan, field):
     del report[field]
     with pytest.raises(GateError):
         security_gate(report, policy)
+
+
+@pytest.fixture
+def reviewed(scan):
+    report, policy = scan
+    report['Results'][0]['Vulnerabilities'] = [
+        {'VulnerabilityID': 'CVE-TEST-1', 'PkgName': 'test-package',
+         'InstalledVersion': '1.0', 'Severity': 'UNKNOWN'}]
+    policy['severity_reviews'] = [{'cve_id': 'CVE-TEST-1', 'package': 'test-package',
+                                   'installed_version': '1.0', 'os_type': 'debian',
+                                   'reviewed_at': '2026-11-01', 'expires_at': '2026-12-01',
+                                   'source': 'https://example.test/primary-cve', 'evidence_sha256': 'a' * 64}]
+    source = {'cveMetadata': {'cveId': 'CVE-TEST-1', 'state': 'PUBLISHED'},
+              'containers': {'adp': [{'providerMetadata': {'shortName': 'CISA-ADP'},
+                                      'metrics': [{'cvssV3_1': {'baseScore': 7.5, 'baseSeverity': 'HIGH'}}]}]}}
+    return report, policy, {'CVE-TEST-1': source}
+
+
+def test_primary_severity_is_reported_without_hiding_scanner_finding(reviewed):
+    result = security_gate(*reviewed, today=date(2026, 11, 1))
+    assert result['passed'] is True
+    assert result['findings'] == 1
+    assert result['resolved_unknown'][0]['scanner_severity'] == 'UNKNOWN'
+    assert result['resolved_unknown'][0]['resolved_severity'] == 'HIGH'
+
+
+def test_primary_critical_still_blocks(reviewed):
+    report, policy, evidence = reviewed
+    evidence['CVE-TEST-1']['containers']['adp'][0]['metrics'][0]['cvssV3_1'] = {
+        'baseScore': 9.8, 'baseSeverity': 'CRITICAL'}
+    assert security_gate(report, policy, evidence, date(2026, 11, 1))['passed'] is False
+
+
+def test_scanner_critical_cannot_be_downgraded_by_review(reviewed):
+    report, policy, evidence = reviewed
+    report['Results'][0]['Vulnerabilities'][0]['Severity'] = 'CRITICAL'
+    assert security_gate(report, policy, evidence, date(2026, 11, 1))['passed'] is False
+
+
+def test_review_does_not_cover_another_package_version(reviewed):
+    report, policy, evidence = reviewed
+    report['Results'][0]['Vulnerabilities'][0]['InstalledVersion'] = '2.0'
+    assert security_gate(report, policy, evidence, date(2026, 11, 1))['passed'] is False
+
+
+def test_expired_or_missing_evidence_fails_closed(reviewed):
+    report, policy, evidence = reviewed
+    with pytest.raises(GateError, match='expired'):
+        security_gate(report, policy, evidence, date(2026, 12, 2))
+    with pytest.raises(GateError, match='Missing primary'):
+        security_gate(report, policy, {}, date(2026, 11, 1))
