@@ -173,7 +173,16 @@ def scan() -> dict:
     subprocess.run([trivy, 'image', '--scanners', 'vuln', '--exit-code', '0', '--format', 'json',
                     '--output', str(REPORTS / 'trivy-image.json'), 'ml-project:lab3'],
                    cwd=ROOT, check=True, timeout=480)
-    result = security_gate(read_json(REPORTS / 'trivy-image.json'), read_json(ROOT / 'config/security_gate.json'))
+    policy = read_json(ROOT / 'config/security_gate.json')
+    evidence = {}
+    for review in policy.get('severity_reviews', []):
+        path = (ROOT / review['evidence_file']).resolve()
+        if not path.is_relative_to((ROOT / 'security/vulnerability-evidence').resolve()):
+            raise GateError('Severity evidence must be inside the reviewed evidence directory')
+        if digest(path) != review['evidence_sha256']:
+            raise GateError('Primary vulnerability evidence SHA256 differs from reviewed policy')
+        evidence[review['cve_id']] = read_json(path)
+    result = security_gate(read_json(REPORTS / 'trivy-image.json'), policy, evidence)
     write(REPORTS / 'real-image-security-policy.json', result)
     if not result['passed']:
         return result
