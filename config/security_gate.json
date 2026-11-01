@@ -1,7 +1,24 @@
 {
   "policy_version": "lab3-security-v1",
   "dependency_policy": "block every pip-audit finding; fail on operational errors or skipped dependencies",
-  "blocked_severities": ["CRITICAL", "UNKNOWN"],
+  "blocked_severities": [
+    "CRITICAL",
+    "UNKNOWN"
+  ],
   "configuration_policy": "block every Trivy Dockerfile misconfiguration",
-  "simulation_report": "tests/fixtures/simulated-critical-trivy.json"
+  "simulation_report": "tests/fixtures/simulated-critical-trivy.json",
+  "severity_reviews": [
+    {
+      "cve_id": "CVE-2026-82560",
+      "package": "perl-base",
+      "installed_version": "5.40.1-6+deb13u1",
+      "os_type": "debian",
+      "reviewed_at": "2026-11-01",
+      "expires_at": "2026-12-01",
+      "evidence_file": "security/vulnerability-evidence/CVE-2026-82560.json",
+      "evidence_sha256": "b329d47da6c421a7b7dc5e640b14a4b750c6e37ec92486eae07af67c77e25d53",
+      "source": "https://github.com/CVEProject/cvelistV5/blob/2cd0e1eb6216b946b0bff49a7302dd72bca32616/cves/2026/82xxx/CVE-2026-82560.json",
+      "reason": "Resolve only this exact UNKNOWN finding using published CISA-ADP CVSS 3.1 evidence. No vulnerability is suppressed; CRITICAL still blocks, all other unresolved UNKNOWN findings still block."
+    }
+  ]
 }
