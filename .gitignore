@@ -53,3 +53,6 @@ core.*
 # Ephemeral private CI data, model and local diagnostic output.
 artifacts/
 reports/
+.lab4/
+lab4-results.zip
+lab4-codespaces.py

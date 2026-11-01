@@ -102,7 +102,8 @@ gate, граничного порога, повреждённой копии д�
 фиксированные примеры; сетевые загрузки и обучение на всём корпусе в них отсутствуют.
 
 Ruff: E4, E7, E9, F, Python 3.12, [ruff.toml](../ruff.toml).
-Bandit: весь `src/`, без `nosec` и без исключений правил.
+Bandit: весь `src/`. В исходной ЛР3 исключений не было; в добавленном API ЛР4
+есть два точечных обоснования B104/B310 в [BANDIT_EXCEPTIONS.md](../security/BANDIT_EXCEPTIONS.md).
 Полная фиксация приложения и инструментов — `requirements.txt`, включая
 Ruff 0.17.3, Bandit 1.9.4, pip-audit 2.10.1 и pytest 9.2.0.
 `requirements-runtime.txt` содержит только inference-зависимости и их транзитивное
@@ -177,7 +178,7 @@ python scripts/ci/lab3.py scan
 docker run --rm --entrypoint id ml-project:lab3 -u
 docker run --rm --network=none --read-only --cap-drop=ALL \
   --security-opt=no-new-privileges --pids-limit=64 --memory=512m --cpus=1 \
-  ml-project:lab3 --self-test
+  --entrypoint python ml-project:lab3 -m src.smoke --self-test
 python scripts/ci/lab3.py smoke
 ```
 

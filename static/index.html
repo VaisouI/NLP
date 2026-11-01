@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMS-фильтр · лабораторная работа № 4</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">NLP / MLSecOps · ЛР4</p><h1>Проверка SMS</h1>
+      <p class="description">Классификатор англоязычных сообщений: обычное сообщение (ham) или спам (spam).</p>
+      <p id="health" role="status">Проверка готовности модели…</p>
+    </header>
+    <section aria-labelledby="input-title">
+      <h2 id="input-title">Сообщение</h2>
+      <form id="prediction-form">
+        <label for="api-token">API-токен</label>
+        <input id="api-token" type="password" autocomplete="off" spellcheck="false" placeholder="Введите токен доступа" required>
+        <p class="hint">Токен используется только для текущих запросов и не сохраняется в браузере.</p>
+        <label for="sms-text">Текст на английском</label>
+        <textarea id="sms-text" rows="6" maxlength="4096" placeholder="Например: Are we still meeting for lunch tomorrow?" required></textarea>
+        <div class="form-bottom"><span id="character-count">0 / 4096</span><button id="submit-button" type="submit">Проверить сообщение</button></div>
+      </form>
+    </section>
+    <section aria-labelledby="result-title" class="result-panel">
+      <h2 id="result-title">Результат</h2>
+      <p id="status" role="status" aria-live="polite" data-state="idle">Введите сообщение и нажмите «Проверить».</p>
+      <pre id="result" aria-label="Ответ API">—</pre>
+    </section>
+    <footer>TF-IDF + логистическая регрессия · модель lab2-v1. Результат — метка класса. Сервис не выводит оценку вероятности.</footer>
+  </main>
+</body>
+</html>

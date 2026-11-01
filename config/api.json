@@ -1,0 +1,11 @@
+{
+  "max_body_bytes": 32768,
+  "body_timeout_seconds": 3.0,
+  "inference_timeout_seconds": 2.0,
+  "startup_timeout_seconds": 20.0,
+  "max_http_inflight": 16,
+  "rate_limit": 10,
+  "rate_period_seconds": 60.0,
+  "invalid_auth_limit": 20,
+  "invalid_auth_period_seconds": 60.0
+}

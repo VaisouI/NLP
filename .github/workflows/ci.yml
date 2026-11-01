@@ -1,4 +1,4 @@
-name: LR3 secure ML CI
+name: LR3–LR4 secure ML CI
 
 on:
   push:
@@ -59,6 +59,10 @@ jobs:
         run: python scripts/ci/lab3.py train
       - name: Evaluate fixed CI sample and model quality gate
         run: python scripts/ci/lab3.py model
+      - name: Install pinned browser for the demonstration page
+        run: python -m playwright install --with-deps chromium
+      - name: Verify HTTP API, detection, integrity and masked web screenshots
+        run: python scripts/ci/lab4.py local --screenshots
       - name: Build non-root inference image
         run: |
           docker build --pull -t ml-project:lab3 .
@@ -69,11 +73,15 @@ jobs:
         run: python scripts/ci/lab3.py scan
       - name: Verify non-root UID and container smoke
         run: python scripts/ci/lab3.py smoke
+      - name: Verify API container, loopback binding, limits and detection
+        run: python scripts/ci/lab4.py container
       - name: Preserve diagnostic reports on success or failure
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
-          name: lab3-reports-${{ github.run_id }}-${{ github.run_attempt }}
-          path: reports/lab3/
+          name: lab4-reports-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            reports/lab3/
+            reports/lab4/
           if-no-files-found: error
           retention-days: 30

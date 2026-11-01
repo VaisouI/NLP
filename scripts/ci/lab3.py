@@ -239,7 +239,8 @@ def smoke() -> dict:
         raise GateError('Runtime container must have a nonzero UID')
     completed = subprocess.run(['docker', 'run', '--rm', '--network=none', '--read-only',
                                 '--cap-drop=ALL', '--security-opt=no-new-privileges', '--pids-limit=64',
-                                '--memory=512m', '--cpus=1', 'ml-project:lab3', '--self-test'],
+                                '--memory=512m', '--cpus=1', '--entrypoint', 'python', 'ml-project:lab3',
+                                '-m', 'src.smoke', '--self-test'],
                                check=True, capture_output=True, text=True, timeout=60)
     result = json.loads(completed.stdout)
     if result.get('passed') is not True:

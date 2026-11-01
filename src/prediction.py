@@ -18,7 +18,11 @@ class SmsPredictor:
     @classmethod
     def from_project(cls, root: Path = ROOT, reference: Path | None = None):
         baseline = reference if reference is not None else preferred_reference(root)
-        model, record = load_verified_model(root / MODEL_RELATIVE, baseline)
+        return cls.from_files(root / MODEL_RELATIVE, baseline, root)
+
+    @classmethod
+    def from_files(cls, model_path: Path, reference: Path, root: Path = ROOT):
+        model, record = load_verified_model(model_path, reference)
         configuration = json.dumps(read_config(root), ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
         if hashlib.sha256(configuration).hexdigest() != record.get('config_sha256'):
             raise ArtifactError('Inference configuration differs from the saved model reference')

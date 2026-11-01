@@ -1,0 +1,7 @@
+{
+  "rule_id": "repeated-unauthorized-v1",
+  "route": "/predict",
+  "http_status": 401,
+  "window_seconds": 60,
+  "threshold": 3
+}
