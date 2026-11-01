@@ -1,5 +1,7 @@
 # NLP-проект: защищённый фильтр SMS
 
+[![LR3 CI](https://github.com/VaisouI/NLP/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/VaisouI/NLP/actions/workflows/ci.yml)
+
 Проект — классификация англоязычных SMS на ham и spam. Вход — текст, результат —
 метка класса; пользователь — разработчик фильтра сообщений. ЛР1 подготавливает
 защищённую среду и исследует датасет. ЛР2 обучает TF-IDF и логистическую регрессию,
@@ -9,7 +11,7 @@
 |---|---|---|
 | ЛР1 | [Отчёт VM](docs/VM_REPORT.md) | [Анализ данных](notebooks/01_dataset_analysis.ipynb) |
 | ЛР2 | [Инструкция](docs/LAB2.md), итоговый `docs/LAB2_REPORT.md` создаётся при запуске | [Модель и устойчивость](notebooks/02_baseline_robustness.ipynb) |
-| ЛР3 | [Безопасный CI/CD: команды, политики и доказательства](docs/LAB3.md) | Выполняется из CLI, Notebook не требуется |
+| ЛР3 | [Фактический отчёт](docs/LAB3_REPORT.md), [команды и политики](docs/LAB3.md) | Выполняется из CLI, Notebook не требуется |
 
 ## ЛР3: безопасный CI/CD
 
@@ -41,6 +43,9 @@ UNKNOWN разрешается только при наличии опублик
 Команды локальной проверки и сценарии трёх отдельных отказов:
 [docs/LAB3.md](docs/LAB3.md). Запуски и диагностические артефакты доступны в
 [GitHub Actions](https://github.com/VaisouI/NLP/actions).
+Итоговые доказательства — успешный запуск и три отказа, 87 тестов, UID 10001 —
+в [отчёте ЛР3](docs/LAB3_REPORT.md). Полные отчёты сохранены также в
+[архиве результатов](evidence/lab3/lab3-results.zip).
 
 ## ЛР2 на сохранённой VM
 

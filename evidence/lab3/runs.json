@@ -1,0 +1,570 @@
+[
+  {
+    "id": 41312562814,
+    "sha": "b6919295a146d131dc26a6d24573ffd432cfc602",
+    "branch": "lab3-demo-security",
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/VaisouI/NLP/actions/runs/41312562814",
+    "artifact_id": 13085822764,
+    "artifact_sha256": "fddf96cec293da6801f8d94fb28ae0364f215985d78facf543a32239da07d311",
+    "jobs": [
+      {
+        "id": 124865818332,
+        "name": "Tests, quality gates, container and security",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 41312562814,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Set up fixed Python",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install fixed dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Prepare verified data and provenance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Ruff",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Bandit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dependency audit - every finding blocks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Data quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Train reproducible candidate on train only",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Evaluate fixed CI sample and model quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Build non-root inference image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Install verified official Trivy",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Dockerfile scan, real image scan and security gate",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 15
+          },
+          {
+            "name": "Verify non-root UID and container smoke",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 16
+          },
+          {
+            "name": "Preserve diagnostic reports on success or failure",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Post Set up fixed Python",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 33
+          },
+          {
+            "name": "Post Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 41312559684,
+    "sha": "4afb1465aa7f0cf364d9efe560c28ba77001e7ea",
+    "branch": "lab3-demo-model",
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/VaisouI/NLP/actions/runs/41312559684",
+    "artifact_id": 13086535553,
+    "artifact_sha256": "2e263a7150f9ab0ade52afe551e0417b997e12474051abaf09442a24302a2df0",
+    "jobs": [
+      {
+        "id": 124865808667,
+        "name": "Tests, quality gates, container and security",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 41312559684,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Set up fixed Python",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install fixed dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Prepare verified data and provenance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Ruff",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Bandit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dependency audit - every finding blocks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Data quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Train reproducible candidate on train only",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Evaluate fixed CI sample and model quality gate",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 12
+          },
+          {
+            "name": "Build non-root inference image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 13
+          },
+          {
+            "name": "Install verified official Trivy",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 14
+          },
+          {
+            "name": "Dockerfile scan, real image scan and security gate",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 15
+          },
+          {
+            "name": "Verify non-root UID and container smoke",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 16
+          },
+          {
+            "name": "Preserve diagnostic reports on success or failure",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Post Set up fixed Python",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 33
+          },
+          {
+            "name": "Post Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 41312557280,
+    "sha": "096ac8d548c6df5bb67810a85a86bf186d886310",
+    "branch": "lab3-demo-data",
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/VaisouI/NLP/actions/runs/41312557280",
+    "artifact_id": 13086555381,
+    "artifact_sha256": "a2a122d3c1693a76959ead93d15f4776e3e1894bb1cf4482358a6268ddb50af2",
+    "jobs": [
+      {
+        "id": 124865801118,
+        "name": "Tests, quality gates, container and security",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 41312557280,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Set up fixed Python",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install fixed dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Prepare verified data and provenance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Ruff",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Bandit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dependency audit - every finding blocks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Data quality gate",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 10
+          },
+          {
+            "name": "Train reproducible candidate on train only",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 11
+          },
+          {
+            "name": "Evaluate fixed CI sample and model quality gate",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 12
+          },
+          {
+            "name": "Build non-root inference image",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 13
+          },
+          {
+            "name": "Install verified official Trivy",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 14
+          },
+          {
+            "name": "Dockerfile scan, real image scan and security gate",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 15
+          },
+          {
+            "name": "Verify non-root UID and container smoke",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 16
+          },
+          {
+            "name": "Preserve diagnostic reports on success or failure",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Post Set up fixed Python",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 33
+          },
+          {
+            "name": "Post Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 41312509931,
+    "sha": "b2742646c1b13a12ae37a038d2f6cd04c81a7d12",
+    "branch": "lab3-secure-ci",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/VaisouI/NLP/actions/runs/41312509931",
+    "artifact_id": 13085711786,
+    "artifact_sha256": "97110339a14c6a74efc4441fa91e03e8e0af3308c91aa686059649ba1b996ce1",
+    "jobs": [
+      {
+        "id": 124865662027,
+        "name": "Tests, quality gates, container and security",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 41312509931,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Set up fixed Python",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install fixed dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Prepare verified data and provenance",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Ruff",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Bandit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Unit and integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Dependency audit - every finding blocks",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Data quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Train reproducible candidate on train only",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Evaluate fixed CI sample and model quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Build non-root inference image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Install verified official Trivy",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Dockerfile scan, real image scan and security gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Verify non-root UID and container smoke",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Preserve diagnostic reports on success or failure",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Post Set up fixed Python",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33
+          },
+          {
+            "name": "Post Checkout reviewed source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 35
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,186 @@
+{
+  "tests": "87 passed in 0.57s",
+  "data": {
+    "passed": true,
+    "samples": 1025,
+    "classes": {
+      "ham": 897,
+      "spam": 128
+    },
+    "sha256": "491bfa211530d93e191309882e5ccee0611589b434deb95dc7fce1e2d4952cfd",
+    "fixture_version": "lab3-ci-jsonl-v1",
+    "exit_code": 0,
+    "stage": "data",
+    "checked_at_utc": "2026-11-01T13:42:51.813474+00:00"
+  },
+  "model": {
+    "passed": true,
+    "baseline": 0.9411764705882353,
+    "candidate": 0.9411764705882353,
+    "threshold": 0.8941176470588235,
+    "relation": "candidate >= baseline * 0.95",
+    "relative_change": 0.0,
+    "model_sha256": "d47e0244322113f70fd08679642bf1811b01b48a8cf56861d5484294e91965ea",
+    "split_sha256": "501059ed268a2ddd6019bd422ced9d6031374891c633944e791e0042f464834b",
+    "exit_code": 0,
+    "stage": "model",
+    "checked_at_utc": "2026-11-01T13:42:57.692611+00:00"
+  },
+  "audit": {
+    "passed": true,
+    "dependencies": 131,
+    "vulnerabilities": 0,
+    "skipped": 0,
+    "policy": "block every finding; operational failure and incomplete audit fail closed",
+    "exit_code": 0,
+    "stage": "audit",
+    "checked_at_utc": "2026-11-01T13:42:51.510924+00:00"
+  },
+  "security": {
+    "passed": true,
+    "findings": 183,
+    "blocked": [],
+    "policy": [
+      "CRITICAL",
+      "UNKNOWN"
+    ],
+    "resolved_unknown": [
+      {
+        "VulnerabilityID": "CVE-2026-119371",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "MEDIUM",
+        "cvss_version": "4.0",
+        "cvss_score": 6.8,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119371.json",
+        "evidence_sha256": "aa992299c1c34273608aaa9b631180452f2dae3bb626988f662d8fc585c631a8",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119372",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "MEDIUM",
+        "cvss_version": "4.0",
+        "cvss_score": 6.8,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119372.json",
+        "evidence_sha256": "30a7309f530a5ee66c7a3141d6219612e6257408fd9b929c0b19b6f9b132a444",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119374",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "HIGH",
+        "cvss_version": "4.0",
+        "cvss_score": 8.5,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119374.json",
+        "evidence_sha256": "702f960387f20a9fe4a48d7b62c68128e711ceb98f3881872b6822c491e6c15d",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119375",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "MEDIUM",
+        "cvss_version": "4.0",
+        "cvss_score": 6.8,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119375.json",
+        "evidence_sha256": "3ea84639f96fd0a9cd317349b7d91e113b3f981bd45c93cd48bb7700698d9bf3",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119376",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "MEDIUM",
+        "cvss_version": "4.0",
+        "cvss_score": 6.8,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119376.json",
+        "evidence_sha256": "29af411b94a52df7e4716362422c309f992783a674929aa40bc3bd7eb5bfc930",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119377",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "LOW",
+        "cvss_version": "3.1",
+        "cvss_score": 2.5,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119377.json",
+        "evidence_sha256": "ff34e01d242187bad5910fddfcbed65c4eeba5b786c3f4bd6fc4bb33747c1180",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-119379",
+        "PkgName": "libsqlite3-0",
+        "InstalledVersion": "3.46.1-7+deb13u2",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "HIGH",
+        "cvss_version": "4.0",
+        "cvss_score": 8.5,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/119xxx/CVE-2026-119379.json",
+        "evidence_sha256": "e0da28cca8d13a40b54634b981df569a83c0b5934e81ba849e8698f08e040e99",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      },
+      {
+        "VulnerabilityID": "CVE-2026-82560",
+        "PkgName": "perl-base",
+        "InstalledVersion": "5.40.1-6+deb13u1",
+        "scanner_severity": "UNKNOWN",
+        "resolved_severity": "HIGH",
+        "cvss_version": "3.1",
+        "cvss_score": 7.5,
+        "source": "https://raw.githubusercontent.com/CVEProject/cvelistV5/fd1af3b556ae527e18a60430583aac338304df18/cves/2026/82xxx/CVE-2026-82560.json",
+        "evidence_sha256": "824239e9579a64c46cc4414a4c22d032c81b79dcdc24f18731a67c4cb5ee6fdc",
+        "source_commit": "fd1af3b556ae527e18a60430583aac338304df18"
+      }
+    ],
+    "scan_created_at": "2026-11-01T13:43:35.935774018Z",
+    "exit_code": 0,
+    "stage": "scan",
+    "checked_at_utc": "2026-11-01T13:43:37.483436+00:00"
+  },
+  "smoke": {
+    "passed": true,
+    "uid": 10001,
+    "smoke": {
+      "passed": true,
+      "model_version": "lab2-v1",
+      "predictions": [
+        {
+          "prediction": "ham",
+          "model_version": "lab2-v1"
+        },
+        {
+          "prediction": "spam",
+          "model_version": "lab2-v1"
+        }
+      ]
+    },
+    "exit_code": 0,
+    "stage": "smoke",
+    "checked_at_utc": "2026-11-01T13:43:40.003177+00:00"
+  },
+  "image_findings_by_scanner_severity": {
+    "LOW": 62,
+    "HIGH": 46,
+    "MEDIUM": 67,
+    "UNKNOWN": 8
+  },
+  "dockerfile_findings": 0,
+  "bandit_findings": 0,
+  "ruff_findings": 0,
+  "image_effective_findings_by_severity": {
+    "LOW": 63,
+    "HIGH": 49,
+    "MEDIUM": 71,
+    "UNKNOWN": 0
+  }
+}
