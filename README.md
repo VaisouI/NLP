@@ -34,6 +34,10 @@ bash scripts/codespaces/run_lab4.sh
 реальные HTTP-тесты, снимки страницы и проверка API-контейнера от UID 10001.
 Подтверждены **135 тестов**, реальный Chromium и работающий контейнер:
 [отчёт ЛР4](docs/LAB4_REPORT.md), [архив проверок](evidence/lab4/lab4-results.zip).
+**02.11.2026 подтверждён также запуск на целевой Ubuntu VM**: mluser (UID 1001),
+исходная модель ЛР2, /health 200, 135 тестов и 144 пакета без находок аудита.
+Сохранены [результаты VM](evidence/lab4/vm-results-20261102.zip) и
+[снимки интерфейса VM](evidence/lab4/vm-screenshots/).
 Для запуска одним Python-файлом доступен
 [lab4-codespaces.py](scripts/codespaces/lab4-codespaces.py): поместите его в корень
 существующего Codespace и выполните `python3 lab4-codespaces.py`.

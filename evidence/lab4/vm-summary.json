@@ -1,0 +1,57 @@
+{
+  "checked_date": "2026-11-02",
+  "vm": {
+    "passed": true,
+    "user": "mluser",
+    "euid": 1001,
+    "health_status": 200,
+    "listen": "127.0.0.1:8000",
+    "protected_reference_writable": false,
+    "model_sha256": "01c009c7f3d92ee711a25c987ab39649a14bd3c3565685e66ac7aefdcd0b4940"
+  },
+  "source": {
+    "passed": true,
+    "mode": "local",
+    "screenshots": false,
+    "model_sha256": "01c009c7f3d92ee711a25c987ab39649a14bd3c3565685e66ac7aefdcd0b4940",
+    "checked_at_utc": "2026-11-02T08:51:52.345828+00:00",
+    "commit": "76ee09ba7a100e945ec9f2f9681469ed5b8228b3",
+    "target_checkout_commit": "e5e2850f4d842d07fee4db252d4a648714bccdc0"
+  },
+  "detection": {
+    "rule_id": "repeated-unauthorized-v1",
+    "start_utc": "2026-11-02T08:51:44.275730+00:00",
+    "end_utc": "2026-11-02T08:51:44.279116+00:00",
+    "window_seconds": 60,
+    "threshold": 3,
+    "observed": 3,
+    "triggered": true,
+    "request_ids": [
+      "b648151392d7493fbbb7280424b18e6f",
+      "2c8c467a5ea34915a3db9bf70209bdd6",
+      "560164cf39284803b79bee8cca228d1c"
+    ],
+    "normal_before_http_status": 200,
+    "normal_after_http_status": 200,
+    "limitations": "Application-level authentication failures only; no claim about poisoning or model accuracy"
+  },
+  "pytest": {
+    "passed": 135,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "warnings": 1
+  },
+  "python_audit": {
+    "packages": 144,
+    "known_vulnerabilities": 0,
+    "skipped": 0
+  },
+  "vm_archive_sha256": "ac08eeb15752822273afafad81541377ea9f135765a89cdfe617ab63daaddf43",
+  "ci_run_id": 41422213613,
+  "ci_source_commit": "1ead3569958b21c9fd3d6af0d840c787bd54d149",
+  "ci_archive_sha256": "5760b68e472801fb10c967356917096b4345de52a499d2860dab2b9df888d373",
+  "manual_web_success": "ham",
+  "manual_web_invalid_token": "unauthorized",
+  "secrets_in_submission": false
+}
