@@ -1,0 +1,14 @@
+{
+  "source_commit": "7a3c049534724aab0a5bda056e1a0db2955cf8d4",
+  "run_id": 41421720322,
+  "job_id": 125198581968,
+  "run_url": "https://github.com/VaisouI/NLP/actions/runs/41421720322",
+  "test": "isolated loopback sshd and HTTP health server; idle timeout shortened to 1 second",
+  "old_initial": "healthy",
+  "old_after_idle": "unreachable",
+  "fixed_initial": "healthy",
+  "fixed_after_idle": "healthy",
+  "fixed_reused_same_controller": true,
+  "bind_address": "127.0.0.1",
+  "source_sha256": "f1bb72443e9614b0f3f43b31a95e1a18da349b70cf39047494628a2b1c815723"
+}

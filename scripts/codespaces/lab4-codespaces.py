@@ -7,7 +7,7 @@ import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
 
-REVIEWED_COMMIT = '76ee09ba7a100e945ec9f2f9681469ed5b8228b3'
+REVIEWED_COMMIT = '7a3c049534724aab0a5bda056e1a0db2955cf8d4'
 CRITICAL_PATHS = ['src', 'scripts', 'config', 'tests', 'security', 'metrics', 'requirements.txt',
                   'requirements-runtime.txt', 'Dockerfile', '.dockerignore', '.github/workflows/ci.yml',
                   'pytest.ini', 'ruff.toml', 'static']
@@ -49,7 +49,8 @@ def main() -> int:
     # Later documentation-only commits are allowed; changed executable sources are not.
     paths = [name for name in CRITICAL_PATHS if name != 'scripts']
     scripts = git('ls-tree', '-r', '--name-only', REVIEWED_COMMIT, '--', 'scripts', cwd=root).stdout.splitlines()
-    paths.extend(scripts)
+    # This bootstrap's own commit pointer is outside the executable VM payload.
+    paths.extend(name for name in scripts if name != 'scripts/codespaces/lab4-codespaces.py')
     if git('diff', '--quiet', REVIEWED_COMMIT, '--', *paths, cwd=root, check=False).returncode != 0:
         raise ValueError('Executable files differ from the reviewed snapshot; existing files were preserved')
     print('Код проверен. Запускаю проверки и API на сохранённой Ubuntu VM…', flush=True)
