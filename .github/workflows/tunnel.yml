@@ -1,0 +1,35 @@
+name: LR4 SSH tunnel regression
+
+on:
+  push:
+    paths:
+      - scripts/codespaces/lab4-fix-access.py
+      - scripts/codespaces/test_tunnel_idle.py
+      - .github/workflows/tunnel.yml
+  pull_request:
+    paths:
+      - scripts/codespaces/lab4-fix-access.py
+      - scripts/codespaces/test_tunnel_idle.py
+      - .github/workflows/tunnel.yml
+
+permissions:
+  contents: read
+
+jobs:
+  tunnel:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Ensure the official OpenSSH server is available
+        shell: bash
+        run: |
+          if [[ ! -x /usr/sbin/sshd ]]; then
+            sudo apt-get update -qq
+            sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openssh-server
+          fi
+      - name: Reproduce idle closure and verify the persistent tunnel
+        run: sudo python3 scripts/codespaces/test_tunnel_idle.py

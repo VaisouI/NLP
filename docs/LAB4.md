@@ -46,8 +46,22 @@ Launcher их не печатает. Итоги VM собираются в `lab4
 
 ```bash
 ssh -F .labvm/ssh_config ml-lab-admin 'sudo systemctl stop ml-lab4-api.service'
-ssh -F .labvm/ssh_config -O cancel -L 127.0.0.1:18000:127.0.0.1:8000 ml-lab
+python3 scripts/codespaces/lab4-fix-access.py --port 18000 --stop
 ```
+
+Если ссылка возвращает HTTP 502 после простоя, восстановите только доступ:
+
+```bash
+python3 scripts/codespaces/lab4-fix-access.py
+```
+
+Исправление создаёт отдельный transport-only SSH master без таймера общего
+`ControlPersist 120`. Оно использует новый loopback-порт **18001**, проверяет
+`/health`, сохраняет прежний API-токен и не переустанавливает окружение. Добавьте
+18001 во вкладке Ports, оставьте Private и выберите протокол **HTTP** для
+внутреннего сервиса. Внешняя ссылка GitHub остаётся **HTTPS**.
+Если даже локальная проверка `/health` не проходит, helper завершится ошибкой,
+не объявляя доступ восстановленным.
 
 ## Локальный запуск из CLI без Notebook
 

@@ -113,8 +113,7 @@ Path('reports/lab4/vm/interactive.json').write_text(json.dumps({'passed':True,'u
 print('Interactive API and external protected model reference: verified.')
 PY
 echo '5/5: Open the SSH loopback tunnel and collect report files.'
-if ssh -F "${state}/ssh_config" -O cancel -L 127.0.0.1:18000:127.0.0.1:8000 ml-lab >/dev/null 2>&1; then :; fi
-ssh -F "${state}/ssh_config" -f -N -o ExitOnForwardFailure=yes -L 127.0.0.1:18000:127.0.0.1:8000 ml-lab
+python3 scripts/codespaces/lab4-fix-access.py --port 18000
 scp -F "${state}/ssh_config" ml-lab:/home/mluser/ml-project/.env.lab4 "${state}/lab4.env"
 chmod 0600 "${state}/lab4.env"
 mkdir -p evidence/lab4/vm
